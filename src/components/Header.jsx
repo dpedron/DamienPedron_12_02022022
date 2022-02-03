@@ -7,12 +7,15 @@ import logo from '../assets/logo.png';
  */
 
 const StyledHeader = styled.header`
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #020203;
   height: 91px;
   padding: 0 87px 0 29px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 const StyledImg = styled.img`
   width: 178px;
@@ -31,15 +34,14 @@ const StyledLink = styled(Link)`
 
 /**
  * Top navigation bar
- * @function Header
- * @returns (JSX)
+ * @return (JSX)
  */
 
 function Header() {
   return (
     <StyledHeader>
       <StyledImg alt="" src={logo} />
-      <StyledLink to="">Accueil</StyledLink>
+      <StyledLink to="/">Accueil</StyledLink>
       <StyledLink to="" $isDisabled>
         Profil
       </StyledLink>

@@ -10,9 +10,10 @@ import { Link } from 'react-router-dom';
  */
 
 const NavContainer = styled.div`
-  position: fixed;
+  position: absolute;
+  top: 0;
   width: 117px;
-  height: 100vh;
+  height: 100%;
   background-color: #020203;
   display: flex;
   flex-direction: column;
@@ -37,13 +38,12 @@ const StyledParagraph = styled.p`
   color: white;
   font-size: 12px;
   font-weight: 500;
-  margin-bottom: 150px;
+  margin-bottom: 59px;
 `;
 
 /**
- * Left navigation bar
- * @function VerticalNav
- * @returns (JSX)
+ * Left side navigation bar
+ * @return (JSX)
  */
 
 function VerticalNav() {
