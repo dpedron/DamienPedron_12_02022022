@@ -42,7 +42,7 @@ const StyledParagraph = styled.p`
 `;
 
 /**
- * Left side navigation bar
+ * @description Left side navigation bar
  * @return (JSX)
  */
 

@@ -33,7 +33,7 @@ const StyledLink = styled(Link)`
 `;
 
 /**
- * Top navigation bar
+ * @description Top navigation bar
  * @return (JSX)
  */
 

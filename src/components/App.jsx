@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 /**
- * App router
+ * @description App router
  * @return (JSX)
  */
 
