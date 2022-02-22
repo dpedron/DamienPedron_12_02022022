@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
   body{
     font-family: 'Roboto', sans-serif;
     margin: auto;
+      height: 100%;
     #root{
       position:relative;
       height: 100%;
@@ -20,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 /**
- * @description App router
+ * App router
  * @return (JSX)
  */
 

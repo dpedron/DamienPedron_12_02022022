@@ -4,9 +4,9 @@ import styled from 'styled-components';
 
 const StyledArticle = styled.article`
   position: relative;
-  margin-top: 70px;
+  margin: 70px 0 30px 0;
   width: 835px;
-  height: 613px;
+  height: 320px;
 `;
 
 const StyledH2 = styled.h2`

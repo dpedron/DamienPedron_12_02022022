@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import DailyActivity from './DailyActivity';
+import SessionDuration from './SessionDuration';
 
 /**
  * Styled Components
@@ -15,6 +16,7 @@ function Info() {
   return (
     <StyledSection>
       <DailyActivity />
+      <SessionDuration />
     </StyledSection>
   );
 }
