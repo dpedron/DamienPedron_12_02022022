@@ -18,7 +18,7 @@ const StyledSpan = styled.span`
 `;
 
 const StyledParagraph = styled.p`
-  margin: 40px 0 0 0;
+  margin: 20px 0 0 0;
   font-size: 18px;
 `;
 

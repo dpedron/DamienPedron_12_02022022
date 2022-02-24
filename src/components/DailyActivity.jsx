@@ -3,8 +3,9 @@ import barChart from './charts/barChart';
 import styled from 'styled-components';
 
 const StyledArticle = styled.article`
+  grid-area: DailyActivity;
   position: relative;
-  margin: 70px 0 30px 0;
+  margin: 50px 0 30px 0;
   width: 835px;
   height: 320px;
 `;

@@ -3,7 +3,8 @@ import HelloUser from '../components/HelloUser';
 import Info from '../components/Info';
 
 const StyledMain = styled.main`
-  margin: 65px 0 0 226px;
+  margin: 45px 107px 0 224px;
+  height: 100%;
 `;
 
 function Home() {

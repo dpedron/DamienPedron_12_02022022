@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import lineChart from './charts/lineChart';
 
 const StyledArticle = styled.article`
+  grid-area: SessionDuration;
   position: relative;
   width: 258px;
   height: 263px;

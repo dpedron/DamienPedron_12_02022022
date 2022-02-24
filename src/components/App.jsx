@@ -12,11 +12,11 @@ const GlobalStyle = createGlobalStyle`
   body{
     font-family: 'Roboto', sans-serif;
     margin: auto;
-      height: 100%;
-    #root{
-      position:relative;
-      height: 100%;
-    }
+    min-height: 100%;
+  }
+  #root{
+    position:relative;
+    min-height: 100%;
   }
 `;
 

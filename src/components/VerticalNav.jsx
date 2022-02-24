@@ -9,15 +9,17 @@ import { Link } from 'react-router-dom';
  * Styled Components
  */
 
-const NavContainer = styled.div`
+const StyledAside = styled.aside`
   position: absolute;
-  top: 0;
   width: 117px;
-  height: 100%;
+  min-height: 100%;
   background-color: #020203;
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width: 1330px) {
+    height: 120%;
+  }
 `;
 const StyledNav = styled.nav`
   flex-grow: 1;
@@ -48,7 +50,7 @@ const StyledParagraph = styled.p`
 
 function VerticalNav() {
   return (
-    <NavContainer>
+    <StyledAside>
       <StyledNav>
         <StyledLink to="">
           <img alt="yoga" src={yoga}></img>
@@ -63,8 +65,8 @@ function VerticalNav() {
           <img alt="bodybuilding" src={bodybuilding}></img>
         </StyledLink>
       </StyledNav>
-      <StyledParagraph>Copiryght, SportSee 2020</StyledParagraph>
-    </NavContainer>
+      <StyledParagraph>Copyright, SportSee 2020</StyledParagraph>
+    </StyledAside>
   );
 }
 
