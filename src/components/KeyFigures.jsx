@@ -8,6 +8,10 @@ import burger from '../assets/burger.svg';
 
 const keyData = Object.values(data.USER_MAIN_DATA[0].keyData);
 
+/**
+ * Styled Components
+ */
+
 const StyledArticle = styled.article`
   margin-top: 50px;
   grid-area: KeyFigures;
@@ -19,6 +23,11 @@ const StyledArticle = styled.article`
     width: 835px;
   }
 `;
+
+/**
+ * @description Display all key figures (user consumption in: calories, proteins, carbohydrates, fats)
+ * @return (JSX)
+ */
 
 function KeyFigures() {
   return (

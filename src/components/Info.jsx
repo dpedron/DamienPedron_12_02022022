@@ -25,6 +25,11 @@ const StyledSection = styled.section`
   }
 `;
 
+/**
+ * @description This section display all charts about user's activities
+ * @return (JSX)
+ */
+
 function Info() {
   return (
     <StyledSection>

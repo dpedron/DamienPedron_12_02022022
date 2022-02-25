@@ -17,11 +17,13 @@ const GlobalStyle = createGlobalStyle`
   #root{
     position:relative;
     min-height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 `;
 
 /**
- * App router
+ * @description App router
  * @return (JSX)
  */
 

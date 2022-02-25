@@ -1,4 +1,9 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
+/**
+ * Styled Components
+ */
 
 const StyledContainer = styled.div`
   width: 258px;
@@ -43,6 +48,11 @@ const StyledPType = styled.p`
   flex-grow: 1;
 `;
 
+/**
+ * @description To create card of the KeyFigures component
+ * @return (JSX)
+ */
+
 function KeyElement({ iconSrc, color, data, unit, type }) {
   return (
     <StyledContainer>
@@ -54,5 +64,17 @@ function KeyElement({ iconSrc, color, data, unit, type }) {
     </StyledContainer>
   );
 }
+
+/**
+ * PropTypes
+ */
+
+KeyElement.propTypes = {
+  iconSrc: PropTypes.string,
+  color: PropTypes.string,
+  data: PropTypes.number,
+  unit: PropTypes.string,
+  type: PropTypes.string,
+};
 
 export default KeyElement;

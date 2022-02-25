@@ -3,25 +3,32 @@ import data from '../../data/data';
 
 const sessions = data.USER_ACTIVITY[0].sessions;
 
+/**
+ * @description Chart to show, kilograms and burned calories per day
+ * @return (SVG)
+ */
+
 function barChart() {
   const kilograms = sessions.map((session) => session.kilogram);
   const calories = sessions.map((session) => session.calories);
-  // set the dimensions and margins of the graph
-  const padding = { top: 112, right: 80, bottom: 62, left: 43 },
-    width = 835 - padding.left - padding.right,
-    height = 320 - padding.top - padding.bottom;
 
-  // append the svg object to the body of the page
+  // Set the dimensions and margins of the chart
+  const margin = { top: 112, right: 80, bottom: 62, left: 43 },
+    width = 835 - margin.left - margin.right,
+    height = 320 - margin.top - margin.bottom;
+
+  // Append the svg object to the body of the page
   const svg = d3
     .select('#bar-chart')
     .append('svg')
-    .attr('width', width + padding.left + padding.right)
-    .attr('height', height + padding.top + padding.bottom)
+    .attr('width', width + margin.left + margin.right)
+    .attr('height', height + margin.top + margin.bottom)
     .style('color', '#9B9EAC')
     .style('background-color', '#FBFBFB')
     .style('border-radius', '5px')
     .append('g')
-    .attr('transform', `translate(${padding.left},${padding.top})`);
+    .attr('transform', `translate(${margin.left},${margin.top})`);
+
   // Add X axis
   const x = d3
     .scaleBand()
@@ -36,10 +43,7 @@ function barChart() {
         .tickSize(0)
         .tickPadding([25])
         .tickFormat((d) => d.charAt(d.length - 1))
-    )
-    .selectAll('text')
-    .style('font-size', '14px')
-    .style('font-weight', '500');
+    );
 
   // Add Y axis
   const y = d3
@@ -57,18 +61,46 @@ function barChart() {
         .tickSize(-width)
         .tickPadding([30])
     )
-    .call((g) => g.select('.domain').remove())
-    .selectAll('text')
-    .style('font-size', '14px')
-    .style('font-weight', '500');
+    .call((g) => g.select('.domain').remove());
+
+  // Kilograms bars
+  svg
+    .append('g')
+    .selectAll('mybar')
+    .data(sessions)
+    .join('rect')
+    .attr('x', (session) => x(session.day) + x.bandwidth() / 2 - 10.5)
+    .attr('y', (session) => y(session.kilogram))
+    .attr('width', 7)
+    .attr('height', (session) => height - y(session.kilogram) + 3)
+    .attr('fill', '#282D30')
+    .attr('rx', '3px')
+    .style('pointer-events', 'none');
+
+  // Calories bars
 
   const y2 = d3
     .scaleLinear()
     .domain([0, d3.max(calories) * 1.1])
     .range([height, 0]);
 
-  // Hover event
+  svg
+    .append('g')
+    .selectAll('mybar')
+    .data(sessions)
+    .join('rect')
+    .attr('x', (session) => x(session.day) + x.bandwidth() / 2 + 4.5)
+    .attr('y', (session) => y2(session.calories))
+    .attr('width', 7)
+    .attr('height', (session) => height - y2(session.calories) + 3)
+    .attr('fill', '#E60000')
+    .attr('rx', '3px')
+    .style('pointer-events', 'none');
 
+  // All text style
+  svg.selectAll('text').style('font-size', '14px').style('font-weight', '500');
+
+  // Hover event
   svg
     .append('g')
     .selectAll('mybar')
@@ -80,18 +112,18 @@ function barChart() {
     .attr('height', height)
     .attr('fill', 'transparent')
     .on('mouseover', function (d, session) {
-      d3.select(this).attr('fill', '#C4C4C480');
+      d3.select(this).attr('fill', '#C4C4C480'); // Show rect behind hovered bar
       d3.select(document.getElementById('info-bubble__rect'))
-        .attr('visibility', 'visible')
-        .attr('x', x.bandwidth() / 2 + Number(d3.select(this).attr('x')) + 7);
+        .attr('visibility', 'visible') // Show bubble background
+        .attr('x', x.bandwidth() / 2 + Number(d3.select(this).attr('x')) + 7); // Move bubble background
       d3.select(document.getElementById('info-bubble__text'))
-        .attr('visibility', 'visible')
-        .attr('x', x.bandwidth() / 2 + Number(d3.select(this).attr('x')) + 27);
+        .attr('visibility', 'visible') // Show bubble text
+        .attr('x', x.bandwidth() / 2 + Number(d3.select(this).attr('x')) + 27); // Move bubble text
       d3.select(document.getElementById('info-bubble__kilograms')).text(
-        session.kilogram + 'kg'
+        session.kilogram + 'kg' // Add kilogram based on data
       );
       d3.select(document.getElementById('info-bubble__calories')).text(
-        session.calories + 'Kcal'
+        session.calories + 'Kcal' // Add calories based on data
       );
     })
     .on('mouseout', function () {
@@ -107,7 +139,6 @@ function barChart() {
     });
 
   // Info bubble
-
   svg
     .append('g')
     .attr('id', 'info-bubble')
@@ -135,43 +166,23 @@ function barChart() {
     .style('font-weight', '500')
     .attr('y', '-10');
 
+  // Info bubble text kilograms
   bubbleText.append('tspan').attr('id', 'info-bubble__kilograms');
 
+  // Info bubble text calories
   bubbleText
     .append('tspan')
     .attr('id', 'info-bubble__calories')
     .attr('dx', -20)
     .attr('dy', 25);
 
-  // Bars
-
-  // Kilograms
+  // Used to remove bottom border radius of the bars
   svg
-    .append('g')
-    .selectAll('mybar')
-    .data(sessions)
-    .join('rect')
-    .attr('x', (session) => x(session.day) + x.bandwidth() / 2 - 10.5)
-    .attr('y', (session) => y(session.kilogram))
-    .attr('width', 7)
-    .attr('height', (session) => height - y(session.kilogram))
-    .attr('fill', '#282D30')
-    .attr('rx', '3px')
-    .style('pointer-events', 'none');
-
-  // Calories
-  svg
-    .append('g')
-    .selectAll('mybar')
-    .data(sessions)
-    .join('rect')
-    .attr('x', (session) => x(session.day) + x.bandwidth() / 2 + 4.5)
-    .attr('y', (session) => y2(session.calories))
-    .attr('width', 7)
-    .attr('height', (session) => height - y2(session.calories))
-    .attr('fill', '#E60000')
-    .attr('rx', '3px')
-    .style('pointer-events', 'none');
+    .append('rect')
+    .attr('y', height + 1)
+    .style('fill', '#FBFBFB')
+    .style('height', '10px')
+    .style('width', width);
 }
 
 export default barChart;

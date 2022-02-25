@@ -2,6 +2,10 @@ import React, { useEffect } from 'react';
 import barChart from './charts/barChart';
 import styled from 'styled-components';
 
+/**
+ * Styled Components
+ */
+
 const StyledArticle = styled.article`
   grid-area: DailyActivity;
   position: relative;
@@ -43,7 +47,7 @@ const StyledPoint = styled.span`
 `;
 
 /**
- * @description Display the bar chart for daily activity
+ * @description Used to add, to the DOM, the bar chart for daily activity
  * @return (JSX)
  */
 

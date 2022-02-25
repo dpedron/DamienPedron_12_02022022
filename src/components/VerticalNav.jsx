@@ -12,7 +12,8 @@ import { Link } from 'react-router-dom';
 const StyledAside = styled.aside`
   position: absolute;
   width: 117px;
-  min-height: 100%;
+  top: 91px;
+  height: 100%;
   background-color: #020203;
   display: flex;
   flex-direction: column;

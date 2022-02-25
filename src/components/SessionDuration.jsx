@@ -2,6 +2,10 @@ import { useEffect } from 'react';
 import styled from 'styled-components';
 import lineChart from './charts/lineChart';
 
+/**
+ * Styled Components
+ */
+
 const StyledArticle = styled.article`
   grid-area: SessionDuration;
   position: relative;
@@ -21,6 +25,11 @@ function SessionDuration() {
   useEffect(() => {
     lineChart();
   }, []);
+
+  /**
+   * @description Used to add, to the DOM, the line chart for session duration
+   * @return (JSX)
+   */
 
   return (
     <StyledArticle>

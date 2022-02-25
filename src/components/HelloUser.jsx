@@ -23,6 +23,7 @@ const StyledParagraph = styled.p`
 `;
 
 /**
+ * @description Say hello to user, show him that he is on is personnal dashboard
  * @return (JSX)
  */
 
