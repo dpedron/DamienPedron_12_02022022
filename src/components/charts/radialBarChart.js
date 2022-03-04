@@ -1,14 +1,14 @@
 import * as d3 from 'd3';
-import data from '../../data/data';
-
-const todayScore = data.USER_MAIN_DATA[0].todayScore;
 
 /**
  * @description Chart to show today's goal
- * @return (SVG)
+ * @param {Object} data - Data to create chart
+ * @returns {SVG}
  */
 
-function radialBarChart() {
+function radialBarChart(data) {
+  const todayScore = data.data.score || data.data.todayScore;
+
   // Set the dimensions of the graph
   const width = 258,
     height = 263;

@@ -1,14 +1,13 @@
 import * as d3 from 'd3';
-import data from '../../data/data';
-
-const sessions = data.USER_ACTIVITY[0].sessions;
 
 /**
  * @description Chart to show, kilograms and burned calories per day
- * @return (SVG)
+ * @param {Object} data - Data to create chart
+ * @returns {SVG}
  */
 
-function barChart() {
+function barChart(data) {
+  const sessions = data.data.sessions;
   const kilograms = sessions.map((session) => session.kilogram);
   const calories = sessions.map((session) => session.calories);
 
@@ -54,13 +53,7 @@ function barChart() {
     .append('g')
     .attr('transform', `translate(${width},0)`)
     .attr('stroke-dasharray', '2')
-    .call(
-      d3
-        .axisRight(y)
-        .ticks(d3.max(kilograms) + 1 - d3.min(kilograms) - 1)
-        .tickSize(-width)
-        .tickPadding([30])
-    )
+    .call(d3.axisRight(y).ticks(3).tickSize(-width).tickPadding([30]))
     .call((g) => g.select('.domain').remove());
 
   // Kilograms bars

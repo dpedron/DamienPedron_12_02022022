@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import barChart from './charts/barChart';
 import styled from 'styled-components';
+import useFetch from './utils/useFetch';
+import { useParams } from 'react-router-dom';
+import Loader from './utils/Loader';
 
 /**
  * Styled Components
@@ -48,29 +51,41 @@ const StyledPoint = styled.span`
 
 /**
  * @description Used to add, to the DOM, the bar chart for daily activity
- * @return (JSX)
+ * @returns {SVG}
  */
 
-function BarChart() {
+function DailyActivity() {
+  const { userId } = useParams();
+  const { userData, isDataLoading, error } = useFetch(userId, 'activity');
   useEffect(() => {
-    barChart();
-  }, []);
+    !isDataLoading && barChart(userData);
+  }, [userData, isDataLoading]);
 
-  return (
-    <StyledArticle>
-      <StyledH2>Activité quotidienne</StyledH2>
-      <StyledDiv>
-        <StyledLegend>
-          <StyledPoint primary />
-          Poids (kg)
-        </StyledLegend>
-        <StyledLegend>
-          <StyledPoint />
-          Calories brûlées (kCal)
-        </StyledLegend>
-      </StyledDiv>
-      <div id="bar-chart"></div>
-    </StyledArticle>
-  );
+  if (error) {
+    return <p>Oooops il y a une erreur, cet élément ne peut être affiché</p>;
+  }
+
+  if (isDataLoading) {
+    return <Loader></Loader>;
+  }
+
+  if (!isDataLoading) {
+    return (
+      <StyledArticle>
+        <StyledH2>Activité quotidienne</StyledH2>
+        <StyledDiv>
+          <StyledLegend>
+            <StyledPoint primary />
+            Poids (kg)
+          </StyledLegend>
+          <StyledLegend>
+            <StyledPoint />
+            Calories brûlées (kCal)
+          </StyledLegend>
+        </StyledDiv>
+        <div id="bar-chart"></div>
+      </StyledArticle>
+    );
+  }
 }
-export default BarChart;
+export default DailyActivity;

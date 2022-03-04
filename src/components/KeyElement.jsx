@@ -50,7 +50,12 @@ const StyledPType = styled.p`
 
 /**
  * @description To create card of the KeyFigures component
- * @return (JSX)
+ * @param {string} iconSrc - Source of the icon
+ * @param {string} color - Background color of the icon
+ * @param {Object} data - User consumption data
+ * @param {string} unit - Consumption unit
+ * @param {string} type - Consumption type
+ * @returns {JSX}
  */
 
 function KeyElement({ iconSrc, color, data, unit, type }) {

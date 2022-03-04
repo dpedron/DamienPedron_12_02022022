@@ -1,15 +1,15 @@
 import * as d3 from 'd3';
-import data from '../../data/data';
-
-let sessions = data.USER_AVERAGE_SESSIONS[0].sessions,
-  duration = sessions.map((d) => d.sessionLength);
 
 /**
  * @description Chart to show the duration of activity per day on a week
- * @return (SVG)
+ * @param {Object} data - Data to create chart
+ * @returns {SVG}
  */
 
-function lineChart() {
+function lineChart(data) {
+  let sessions = data.data.sessions,
+    duration = sessions.map((d) => d.sessionLength);
+
   // Set the dimensions of the chart
   const width = 258,
     height = 263;
@@ -61,7 +61,7 @@ function lineChart() {
 
   // Add fake data(1 day before an 1 after) to make a line from 0 to the end of the box
   let modifiedSessions = [
-    { day: 0, sessionLength: 10 },
+    { day: 0, sessionLength: 30 },
     ...sessions,
     { day: 8, sessionLength: 70 },
   ];
@@ -113,6 +113,7 @@ function lineChart() {
     .attr('stroke', 'rgba(255,255,255, .3)')
     .attr('stroke-width', 10)
     .attr('r', 4)
+    .style('pointer-events', 'none')
     .attr(
       'transform',
       (s) => `translate(${x(s.day) - 36}, ${y(s.sessionLength)})`
@@ -159,6 +160,21 @@ function lineChart() {
     .selectAll('rect')
     .data(sessions)
     .on('mouseover', function (e, s) {
+      if (s.day === sessions.length) {
+        // Translate the last bubble to be visible
+        document
+          .getElementById(`rect-${s.day}`)
+          .setAttribute(
+            'transform',
+            `translate(${x(s.day) - 76}, ${y(s.sessionLength + 16)})`
+          );
+        document
+          .getElementById(`text-${s.day}`)
+          .setAttribute(
+            'transform',
+            `translate(${x(s.day) - 55}, ${y(s.sessionLength + 8)})`
+          );
+      }
       document.getElementById(`circle-${s.day}`).setAttribute('opacity', 1);
       document.getElementById(`rect-${s.day}`).setAttribute('opacity', 1);
       document.getElementById(`text-${s.day}`).setAttribute('opacity', 1);
@@ -169,7 +185,6 @@ function lineChart() {
       document.getElementById(`rect-${s.day}`).setAttribute('opacity', 0);
       document.getElementById(`text-${s.day}`).setAttribute('opacity', 0);
       this.setAttribute('opacity', 0);
-      console.log(s.day);
     });
 }
 

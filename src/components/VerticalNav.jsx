@@ -12,14 +12,14 @@ import { Link } from 'react-router-dom';
 const StyledAside = styled.aside`
   position: absolute;
   width: 117px;
-  top: 91px;
-  height: 100%;
+  height: calc(100% - 90px);
+  top: 90px;
   background-color: #020203;
   display: flex;
   flex-direction: column;
   align-items: center;
   @media (max-width: 1330px) {
-    height: 120%;
+    height: 130%;
   }
 `;
 const StyledNav = styled.nav`
@@ -46,7 +46,7 @@ const StyledParagraph = styled.p`
 
 /**
  * @description Left side navigation bar
- * @return (JSX)
+ * @returns {JSX}
  */
 
 function VerticalNav() {

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import data from '../data/data';
-
-const userName = data.USER_MAIN_DATA[0].userInfos.firstName; // Mocked data used for integration will be replaced by data from API
+import useFetch from './utils/useFetch';
+import { useParams } from 'react-router-dom';
 
 /**
  * Styled Components
@@ -24,20 +23,34 @@ const StyledParagraph = styled.p`
 
 /**
  * @description Say hello to user, show him that he is on is personnal dashboard
- * @return (JSX)
+ * @returns {JSX}
  */
 
 function HelloUser() {
-  return (
-    <div>
-      <StyleH1>
-        Bonjour <StyledSpan>{userName}</StyledSpan>
-      </StyleH1>
-      <StyledParagraph>
-        Félicitation ! Vous avez explosé vos objectifs hier 👏
-      </StyledParagraph>
-    </div>
-  );
+  const { userId } = useParams();
+  const { userData, isDataLoading, error } = useFetch(userId, 'mainData');
+
+  if (error) {
+    return <p>Oooops il y a une erreur, cet élément ne peut être affiché</p>;
+  }
+
+  if (isDataLoading) {
+    return <p>Loading ...</p>;
+  }
+
+  if (!isDataLoading) {
+    const userName = userData.data.userInfos.firstName;
+    return (
+      <div>
+        <StyleH1>
+          Bonjour <StyledSpan>{userName}</StyledSpan>
+        </StyleH1>
+        <StyledParagraph>
+          Félicitation ! Vous avez explosé vos objectifs hier 👏
+        </StyledParagraph>
+      </div>
+    );
+  }
 }
 
 export default HelloUser;

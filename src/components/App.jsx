@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
+import Login from '../pages/Login';
 import Home from '../pages/Home';
 import Header from './Header';
 import VerticalNav from './VerticalNav';
@@ -12,7 +13,8 @@ const GlobalStyle = createGlobalStyle`
   body{
     font-family: 'Roboto', sans-serif;
     margin: auto;
-    min-height: 100%;
+    height: 100vh;
+    min-height: 920px;
   }
   #root{
     position:relative;
@@ -24,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
 
 /**
  * @description App router
- * @return (JSX)
+ * @returns {JSX}
  */
 
 function App() {
@@ -34,7 +36,8 @@ function App() {
       <Header />
       <VerticalNav />
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<Login />} />
+        <Route path="/user/:userId" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );

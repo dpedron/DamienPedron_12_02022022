@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import radialBarChart from './charts/radialBarChart';
+import useFetch from './utils/useFetch';
+import { useParams } from 'react-router-dom';
+import Loader from './utils/Loader';
 
 /**
  * Styled Components
@@ -23,20 +26,32 @@ const StyledH2 = styled.h2`
 
 /**
  * @description Used to add, to the DOM, the radial bar chart for daily score
- * @return (JSX)
+ * @returns {JSX}
  */
 
 function Score() {
+  const { userId } = useParams();
+  const { userData, isDataLoading, error } = useFetch(userId, 'mainData');
   useEffect(() => {
-    radialBarChart();
-  }, []);
+    !isDataLoading && radialBarChart(userData);
+  }, [userData, isDataLoading]);
 
-  return (
-    <StyledArticle>
-      <StyledH2>Score</StyledH2>
-      <div id="radial-bar-chart"></div>
-    </StyledArticle>
-  );
+  if (error) {
+    return <p>Oooops il y a une erreur, cet élément ne peut être affiché</p>;
+  }
+
+  if (isDataLoading) {
+    return <Loader></Loader>;
+  }
+
+  if (!isDataLoading) {
+    return (
+      <StyledArticle>
+        <StyledH2>Score</StyledH2>
+        <div id="radial-bar-chart"></div>
+      </StyledArticle>
+    );
+  }
 }
 
 export default Score;

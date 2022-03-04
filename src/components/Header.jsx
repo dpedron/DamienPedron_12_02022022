@@ -34,7 +34,7 @@ const StyledLink = styled(Link)`
 
 /**
  * @description Top navigation bar
- * @return (JSX)
+ * @returns {JSX}
  */
 
 function Header() {

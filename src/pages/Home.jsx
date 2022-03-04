@@ -14,7 +14,7 @@ const StyledMain = styled.main`
 
 /**
  * @description User's dashboard page
- * @return (JSX)
+ * @returns {JSX}
  */
 
 function Home() {
