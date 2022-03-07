@@ -2,9 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
-/**
- * Styled Components
- */
+// Styled Components
 
 const StyledHeader = styled.header`
   position: relative;

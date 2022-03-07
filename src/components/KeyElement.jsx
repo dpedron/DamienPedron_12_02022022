@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-/**
- * Styled Components
- */
+// Styled Components
 
 const StyledContainer = styled.div`
   width: 258px;

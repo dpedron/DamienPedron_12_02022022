@@ -5,9 +5,7 @@ import bodybuilding from '../assets/bodybuilding.png';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-/**
- * Styled Components
- */
+// Styled Components
 
 const StyledAside = styled.aside`
   position: absolute;
@@ -19,7 +17,7 @@ const StyledAside = styled.aside`
   flex-direction: column;
   align-items: center;
   @media (max-width: 1330px) {
-    height: 130%;
+    height: 110%;
   }
 `;
 const StyledNav = styled.nav`

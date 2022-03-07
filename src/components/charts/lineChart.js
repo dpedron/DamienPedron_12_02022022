@@ -162,23 +162,24 @@ function lineChart(data) {
     .on('mouseover', function (e, s) {
       if (s.day === sessions.length) {
         // Translate the last bubble to be visible
+        console.log(s.sessionLength);
         document
           .getElementById(`rect-${s.day}`)
           .setAttribute(
             'transform',
-            `translate(${x(s.day) - 76}, ${y(s.sessionLength + 16)})`
+            `translate(${x(s.day) - 76}, ${y(s.sessionLength) - 30})`
           );
         document
           .getElementById(`text-${s.day}`)
           .setAttribute(
             'transform',
-            `translate(${x(s.day) - 55}, ${y(s.sessionLength + 8)})`
+            `translate(${x(s.day) - 55}, ${y(s.sessionLength) - 14})`
           );
       }
-      document.getElementById(`circle-${s.day}`).setAttribute('opacity', 1);
-      document.getElementById(`rect-${s.day}`).setAttribute('opacity', 1);
-      document.getElementById(`text-${s.day}`).setAttribute('opacity', 1);
-      this.setAttribute('opacity', 0.1);
+      document.getElementById(`circle-${s.day}`).setAttribute('opacity', 1); // Show the circle
+      document.getElementById(`rect-${s.day}`).setAttribute('opacity', 1); // Show the bubble
+      document.getElementById(`text-${s.day}`).setAttribute('opacity', 1); // Show the text
+      this.setAttribute('opacity', 0.1); // Darken the right part of the graph (based on the circle position)
     })
     .on('mouseout', function (e, s) {
       document.getElementById(`circle-${s.day}`).setAttribute('opacity', 0);

@@ -8,9 +8,7 @@ import { useParams } from 'react-router-dom';
 import useFetch from './utils/useFetch';
 import Loader from './utils/Loader';
 
-/**
- * Styled Components
- */
+// Styled Components
 
 const StyledArticle = styled.article`
   margin-top: 50px;

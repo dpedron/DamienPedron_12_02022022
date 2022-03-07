@@ -5,9 +5,7 @@ import useFetch from './utils/useFetch';
 import { useParams } from 'react-router-dom';
 import Loader from './utils/Loader';
 
-/**
- * Styled Components
- */
+// Styled Components
 
 const StyledArticle = styled.article`
   grid-area: Score;

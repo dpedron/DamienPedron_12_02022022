@@ -2,9 +2,7 @@ import styled from 'styled-components';
 import useFetch from './utils/useFetch';
 import { useParams } from 'react-router-dom';
 
-/**
- * Styled Components
- */
+// Styled Components
 
 const StyleH1 = styled.h1`
   font-weight: 500;
