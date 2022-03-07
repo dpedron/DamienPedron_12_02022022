@@ -61,6 +61,7 @@ const StyledDiv = styled.div`
 `;
 
 /**
+ * @description Loader
  * @returns {JSX}
  */
 

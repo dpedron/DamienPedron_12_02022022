@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
-import Login from '../pages/Login';
-import Home from '../pages/Home';
-import Header from './Header';
-import VerticalNav from './VerticalNav';
-import Error from '../pages/Error';
+import Login from './pages/Login';
+import Home from './pages/Home';
+import Header from './components/Header';
+import VerticalNav from './components/VerticalNav';
+import Error from './pages/Error';
 
 // Styled Components
 
